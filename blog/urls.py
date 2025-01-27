@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from accountapp.views import AccountCreateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accountapp.urls')),
     # account로 들오면 accountapp.urls 파일에서 라우팅할거 찾ㅇ르거야
+
 ]
