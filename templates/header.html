@@ -6,6 +6,17 @@
         <span>nav1</span>
         <span>nav1</span>
         <span>nav1</span>
-        <span>nav1</span>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}?next={{request.path}}">
+            <span>login</span>
+        </a>
+        {% else %}
+        <!-- django 1.10 부터 LogoutView는 이제 사용자를 로그아웃하기 위해 POST 요청을 필요로 합니다.
+이전에는 GET 요청도 허용했지만, 이는 보안 취약점을 유발할 수 있었습니다. 그렇대~~~~~한시간동안 헤맸네 쑤에에에엥ㅅ -->
+        <form method="post" action="{% url 'accountapp:logout'%}?next={{request.path}}">
+            {% csrf_token %}
+            <input type="submit" value="logout">
+        </form>
+        {% endif %}
     </div>
 </div>
