@@ -2,12 +2,15 @@
 
 {% block content %}
 
-    <div style="text-align: center">
+    <div style="text-align:center; max-width:500px;margin:4rem auto">
+        <div>
+            <h4>Sign up</h4>
+        </div>
         <form action="{% url 'accountapp:create' %}" method="POST">
             <!-- post에는 무조건 csrf_token있어야함.. 장고에서 제공하는 보안인데 없으면 동작안함 -->
             {% csrf_token %}
-            {{form}}
-            <input type="submit" class="btn btn=primary">
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-dark rounded-fill col6 mt-3">
         </form>
 
     </div>
